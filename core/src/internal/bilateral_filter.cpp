@@ -89,10 +89,6 @@ void _process(
                     uint8_t g {image[neighbor_idx + 1]};
                     uint8_t b {image[neighbor_idx + 2]};
 
-                    double L {cie_image[neighbor_idx]};
-                    double A {cie_image[neighbor_idx + 1]};
-                    double B {cie_image[neighbor_idx + 2]};
-
                     w_space = spatial_weights[(ky + radius) * kernel_diameter + (kx + radius)];
 
                     switch (color_space) {
@@ -109,6 +105,9 @@ void _process(
                         break;
                     }
                     case COLOR_SPACE_OPTION_CIELAB: {
+                        double L {cie_image[neighbor_idx]};
+                        double A {cie_image[neighbor_idx + 1]};
+                        double B {cie_image[neighbor_idx + 2]};
                         dL = L - L0;
                         dA = A - A0;
                         dB = B - B0;
